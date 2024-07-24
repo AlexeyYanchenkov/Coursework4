@@ -13,7 +13,7 @@ class Vacancy:
         """Метод добавления вакансий в список"""
         object_list = []
         for vacancy in json_vacancies:
-            __name = vacancy.get("name")
+            name = vacancy.get("name")
             link = vacancy.get("alternate_url")
             salary = vacancy.get("salary", 'Не указано')
             vacancy_id = vacancy.get("id")
@@ -24,7 +24,7 @@ class Vacancy:
                 salary = cls.validate__int(vacancy.get("salary").get("from"))
                 responsibility = cls.validate__str(vacancy.get("snippet").get("responsibility"))
                 requirement = cls.validate__str(vacancy.get("snippet").get("requirement"))
-                vacancy_obj = cls(__name, link, salary, responsibility, requirement, vacancy_id)
+                vacancy_obj = cls(name, link, salary, responsibility, requirement, vacancy_id)
                 object_list.append(vacancy_obj)
         return object_list
 

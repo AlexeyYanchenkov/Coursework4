@@ -47,5 +47,4 @@ def read_json(file_path):
 def save_to_json(filtred_vacancies, file_path=vacancies_file_path):
     """Сохраняем в json файл"""
     with open(file_path, 'w', encoding='utf-8') as file_path:
-        up_load_json = json.dumps(filtred_vacancies, file_path, ensure_ascii=False, indent=4)
-        file_path.write(up_load_json)
+        json.dump(filtred_vacancies, file_path, ensure_ascii=False, indent=4)
