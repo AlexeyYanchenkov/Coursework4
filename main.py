@@ -29,8 +29,6 @@ def main():
 
     sorted_vacancies = sort_vacancies(get_by_sal_range)
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
-    for vacancy in top_vacancies:
-        print(vacancy)
     json_saver_inst.save_filtred_vacancices(vacancies_list)
 
 
