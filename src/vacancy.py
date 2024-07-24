@@ -49,7 +49,7 @@ class Vacancy:
             return value
         return 0
 
-    def lt(self, other):
+    def __lt__(self, other):
         if self.salary is not None and other.salary is not None:
             return self.salary < other.salary
 
