@@ -39,10 +39,13 @@ def get_vacancies_by_salary_range(vacancies_list, salary_min: int, salary_max: i
 
 
 def read_json(file_path):
+    """Читаем json файл """
     with open(file_path, 'r', encoding='utf-8') as file_path:
         return json.load(file_path)
 
 
 def save_to_json(filtred_vacancies, file_path=vacancies_file_path):
+    """Сохраняем в json файл"""
     with open(file_path, 'w', encoding='utf-8') as file_path:
-        json.dump(filtred_vacancies, file_path, ensure_ascii=False, indent=4)
+        up_load_json = json.dumps(filtred_vacancies, file_path, ensure_ascii=False, indent=4)
+        file_path.write(up_load_json)

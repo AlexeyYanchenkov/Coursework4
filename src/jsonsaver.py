@@ -60,7 +60,7 @@ def delete_vacancy(id_del, file_path=vacancies_file_path):
 
 
 def get_vacancies_by_criteria(self, criteria):
-    # Заглушка для получения вакансий из файла по критериям
+    """ Заглушка для получения вакансий из файла по критериям """
     pass
 
 

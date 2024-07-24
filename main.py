@@ -2,8 +2,8 @@ import os
 
 
 from src.HHAPI import HHAPI
-from src.utils import sort_vacancies, get_vacancies_by_salary_range, \
-    get_top_vacancies
+from src.utils import sort_vacancies, get_vacancies_by_salary_range, get_top_vacancies
+from src.jsonsaver import JSONSaver
 from src.vacancy import Vacancy
 
 from config import ROOT_DIR
@@ -16,6 +16,7 @@ def main():
     # Создание экземпляра класса для работы с API сайтов с вакансиями
     hh_api = HHAPI()
     # Получение вакансий с hh.ru в формате JSON
+    json_saver_inst = JSONSaver()
     hh_vacancies = hh_api.get_vacancies(search_query)
     vacancies_list = Vacancy.cast_to_object_list(hh_vacancies)
     top_n = int(input("Введите количество вакансий для вывода в топ N: "))
@@ -30,6 +31,7 @@ def main():
     top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
     for vacancy in top_vacancies:
         print(vacancy)
+    json_saver_inst.save_filtred_vacancices(vacancies_list)
 
 
 if __name__ == "__main__":
