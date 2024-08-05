@@ -17,18 +17,12 @@ class AbstractVacancySaver(ABC):
     def delete_vacancy(self, vacancy, id_del: [int]):
         pass
 
-    @abstractmethod
-    def get_vacancies_by_criteria(self, criteria):
-        pass
-
 
 class JSONSaver(AbstractVacancySaver):
     """Класс для добавления вакансий в JSON файл"""
 
-
     def __init__(self, file_path=vacancies_file_path):
         self.__file_path = file_path
-
 
     def add_vacancy(self, vacancy, file_path=vacancies_file_path):
         """Метод для добавления вакансий """
@@ -46,7 +40,6 @@ class JSONSaver(AbstractVacancySaver):
             print(f'вакансия существует \n{vacancy}')
         save_to_json(data)
 
-
     def delete_vacancy(self, id_del, file_path=vacancies_file_path):
         """Метод удаления вакансии"""
         new_list = []
@@ -57,12 +50,6 @@ class JSONSaver(AbstractVacancySaver):
                 continue
             new_list.append(vacancy_item)
         save_to_json(new_list)
-
-
-    def get_vacancies_by_criteria(self, criteria):
-        """ Заглушка для получения вакансий из файла по критериям """
-        pass
-
 
     def save_filtred_vacancices(self, vacancies_list):
         """Метод для фильтрации и сохранении вакансий"""

@@ -19,7 +19,7 @@ class Vacancy:
             vacancy_id = vacancy.get("id")
             if salary is None:
                 salary = 0
-                # salary = 'Не указано'
+                salary = 'Не указано'
             else:
                 salary = cls.validate__int(vacancy.get("salary").get("from"))
                 responsibility = cls.validate__str(vacancy.get("snippet").get("responsibility"))
@@ -39,20 +39,23 @@ class Vacancy:
 
     @staticmethod
     def validate__str(value):
+        """Метод вывода информации при нулевой строке"""
         if value:
             return value
         return "Информация не была найдена"
 
     @staticmethod
     def validate__int(value):
+        """Метод вывода информации при вводе 0"""
         if value:
             return value
         return 0
 
     def __lt__(self, other):
+        """Метод сравнения зарплат "меньше чем" """
         if self.salary is not None and other.salary is not None:
             return self.salary < other.salary
 
     def __gt__(self, other):
-
+        """Метод сравнения зарплат "больше чем" """
         return self.salary > other.salary

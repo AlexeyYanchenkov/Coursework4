@@ -6,11 +6,13 @@ vacancies_file_path = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
 
 
 def print_vacancies(vacancies):
+    """Метод вывода вакансий"""
     for vacancy in vacancies:
         print(vacancy)
 
 
 def filter_vacancies(vacancies, words):
+    """Метод фильтрации вакансий"""
     filtered_vacancies = []
     for vacancy in vacancies:
         for word in words:
@@ -21,10 +23,12 @@ def filter_vacancies(vacancies, words):
 
 
 def sort_vacancies(vacancies):
+    """Метод сортировки вакансий"""
     return sorted(vacancies, reverse=True)
 
 
 def get_top_vacancies(vacancies, stop):
+    """Метод вывода топа вакансий"""
     return vacancies[:stop]
 
 
