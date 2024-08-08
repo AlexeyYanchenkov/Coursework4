@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import os
 from src.utils import save_to_json, read_json
 from config import ROOT_DIR
-
+import json
 vacancies_file_path = os.path.join(ROOT_DIR, 'data', 'vacancies.json')
 
 
@@ -58,3 +58,9 @@ class JSONSaver(AbstractVacancySaver):
             vac_dict = vacancy.__dict__
             filtred_vacancies.append(vac_dict)
             save_to_json(filtred_vacancies, self.__file_path)
+
+    def load_vacancies(self):
+        """Метод получения данных из файла"""
+        with open(self.__file_path, 'r', encoding='utf-8')as file:
+            new_list = json.load(file)
+        return new_list

@@ -19,13 +19,12 @@ class Vacancy:
             vacancy_id = vacancy.get("id")
             if salary is None:
                 salary = 0
-                salary = 'Не указано'
             else:
                 salary = cls.validate__int(vacancy.get("salary").get("from"))
-                responsibility = cls.validate__str(vacancy.get("snippet").get("responsibility"))
-                requirement = cls.validate__str(vacancy.get("snippet").get("requirement"))
-                vacancy_obj = cls(name, link, salary, responsibility, requirement, vacancy_id)
-                object_list.append(vacancy_obj)
+            responsibility = cls.validate__str(vacancy.get("snippet").get("responsibility"))
+            requirement = cls.validate__str(vacancy.get("snippet").get("requirement"))
+            vacancy_obj = cls(name, link, salary, responsibility, requirement, vacancy_id)
+            object_list.append(vacancy_obj)
         return object_list
 
     def __str__(self):
