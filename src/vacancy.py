@@ -12,17 +12,17 @@ class Vacancy:
     def cast_to_object_list(cls, json_vacancies):
         """Метод добавления вакансий в список"""
         object_list = []
-        for vacancy in json_vacancies:
-            name = vacancy.get("name")
-            link = vacancy.get("alternate_url")
-            salary = vacancy.get("salary", 'Не указано')
-            vacancy_id = vacancy.get("id")
+        for vacancies in json_vacancies:
+            name = vacancies.get("name")
+            link = vacancies.get("alternate_url")
+            salary = vacancies.get("salary")
+            vacancy_id = vacancies.get("id")
             if salary is None:
                 salary = 0
             else:
-                salary = cls.validate__int(vacancy.get("salary").get("from"))
-            responsibility = cls.validate__str(vacancy.get("snippet").get("responsibility"))
-            requirement = cls.validate__str(vacancy.get("snippet").get("requirement"))
+                salary = cls.validate__int(vacancies.get("salary").get("from"))
+            responsibility = cls.validate__str(vacancies.get("snippet").get("responsibility"))
+            requirement = cls.validate__str(vacancies.get("snippet").get("requirement"))
             vacancy_obj = cls(name, link, salary, responsibility, requirement, vacancy_id)
             object_list.append(vacancy_obj)
         return object_list
@@ -38,17 +38,18 @@ class Vacancy:
 
     @staticmethod
     def validate__str(value):
-        """Метод вывода информации при нулевой строке"""
-        if value:
-            return value
-        return "Информация не была найдена"
+        """Валидатор для строковых значений"""
+        if not isinstance(value, str):
+            return """Информация не найдена"""
+        return value
 
     @staticmethod
     def validate__int(value):
-        """Метод вывода информации при вводе 0"""
-        if value:
-            return value
-        return 0
+        """Валидатор для числовых значений"""
+        if not isinstance(value, int):
+            return 0
+        if value < 0:
+            return 0
 
     def __lt__(self, other):
         """Метод сравнения зарплат "меньше чем" """
